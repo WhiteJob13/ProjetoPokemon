@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="pokemon.css" />
+    <title>Po keStats</title>
+  </head>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-image: url(https://cdna.artstation.com/p/assets/images/images/077/352/672/large/flyziken-twitch-bg-pokemon.jpg?1719247264);
+    }
+  </style>
+
+  <body>
+    <div class="box">
+      <div class="selected-option">
+        <p>Selecione sua opcao</p>
+        <div class="arrow"></div>
+      </div>
+
+      <div class="option_box">
+        <nav>
+          <ul>
+            <li>Lutador</li>
+            <li>Voador</li>
+            <li>Agua</li>
+            <li>Gelo</li>
+            <li>Fogo</li>
+            <li>Pedra</li>
+            <li>Terra</li>
+            <li>Planta</li>
+            <li>Grama</li>
+            <li>Inseto</li>
+            <li>Eletrico</li>
+            <li>Venenoso</li>
+            <li>Fantasma</li>
+            <li>Acao</li>
+            <li>psiquico</li>
+            <li>Dragao</li>
+            <li>Fada</li>
+            <li>Stellar</li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </body>
+    <script>
+    let selected_option = document.querySelector(".sected_option");
+    let selection = document.querySelector(".sected_option p");
+    let option_box = document.querySelector("nav");
+    let options = document.querySelectorAll("nav ul li");
+
+
+        selected_option.addEventListener("clik" , selection_funcion);
+        
+        function funfnselection_funcion(){
+
+            option_box.classList.toggle(".nav_active");
+
+        }
+    
+    </script>
+</html>
