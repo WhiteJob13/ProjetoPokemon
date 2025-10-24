@@ -19,6 +19,7 @@ body {
   justify-content: space-between;
   color: white;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+
 }
 
 .logo-center {
@@ -28,6 +29,48 @@ body {
 .logo-left i {
   font-size: 1.5rem;
 }
+
+/* =================================================================
+   BOTÃO DE LOGIN (Mantido)
+   ================================================================= */
+.buttonLogin {
+  color: black;
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  top: 14vh;
+  left: 90%;
+  display: flex;
+  background: #fff;
+  border-radius: 50%;
+  font-size: 3dvh;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  padding: 30px;
+  transition: all 0.2s ease;
+
+}
+
+.buttonLogin:hover {
+  transform: translateY(-6px);
+  background-color: #FFC107;
+  color: white;
+
+}
+
+/* iconUser serve para alterar a posicao*/
+.iconUser {
+  position: relative;
+  top: -40px;
+  right: 4px;
+
+}
+
+/* User, div para mudar a cor do icon, que na vdd e um href*/
+.user {
+  color: black;
+}
+
 
 /* Container geral */
 .container {
@@ -77,9 +120,10 @@ body {
   margin-left: 0.6rem;
 }
 
-/* Botões Filter e Elements com sombra */
+/* Botões de filtro (BASE: AGORA SE APLICA A TODOS) */
 .filter-btn,
-.elements-btn {
+#show-all-btn,
+#show-favorites-btn {
   background: #fff;
   border: none;
   border-radius: 25px;
@@ -93,6 +137,42 @@ body {
   align-items: center;
   gap: 0.6rem;
   transition: all 0.2s ease;
+  color: #333;
+  /* Cor do texto padrão */
+}
+
+.filter-btn:hover,
+#show-all-btn:hover:not(.active-filter),
+#show-favorites-btn:hover:not(.active-filter) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+}
+
+/* =================================================================
+   ESTILOS ATIVOS DOS BOTÕES "TODOS" E "FAVORITOS"
+   ================================================================= */
+
+/* Destaque ATIVO para o botão "Todos": Apenas afundar e escurecer levemente */
+#show-all-btn.active-filter {
+  /* Afundar o botão (inverte o translateY e usa uma sombra mais sutil) */
+  transform: translateY(0px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Amarelo */
+  background: #FFC107;
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 2px 4px rgba(255, 193, 7, 0.5);
+}
+
+/* Estilo ATIVO para o botão "Favoritos" (Fundo Amarelo, Texto Branco) */
+#show-favorites-btn.active-filter {
+  background: #FFC107;
+  /* Amarelo */
+  color: white;
+  font-weight: bold;
+  /* Manter a aparência "afundada" para consistência visual do ativo */
+  transform: translateY(0px);
+  box-shadow: 0 2px 4px rgba(255, 193, 7, 0.5);
 }
 
 /* Grid de Pokémon */
@@ -101,10 +181,19 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
   gap: 1.5rem;
   justify-content: center;
-  /* centraliza os cards na tela */
   padding: 1rem;
   max-width: 1200px;
-  /* opcional: limita largura total para PC */
+  margin: 0 auto;
+}
+
+/* Aplica o estilo de grid ao container que o JS está usando */
+#pokemon-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 1.5rem;
+  justify-content: center;
+  padding: 1rem;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -122,16 +211,13 @@ body {
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s;
   box-sizing: border-box;
-  /* garante que padding não aumente o tamanho total */
+  cursor: pointer;
 }
-
 
 .pokemon-card img {
   width: 100%;
   max-width: 225px;
-  /* tamanho máximo */
   height: auto;
-  /* mantém proporção */
   object-fit: contain;
   margin-top: 10px;
 }
@@ -139,7 +225,6 @@ body {
 /* Nome sempre no rodapé */
 .pokemon-card h3 {
   margin-top: auto;
-  /* joga o nome pro final do flex */
   font-size: 25px;
   font-weight: 600;
   text-align: center;
@@ -149,7 +234,9 @@ body {
   transform: translateY(-6px);
 }
 
-/* Bolinha do tipo */
+/* =================================================================
+   BOLINHA DO TIPO (MANTIDO E GARANTIDO)
+   ================================================================= */
 .type {
   position: absolute;
   top: 10px;
@@ -160,7 +247,7 @@ body {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
-/* Tooltip */
+/* Tooltip, "é uma pequena caixa de texto flutuante que aparece ao passar o mouse" */
 .type::after {
   content: attr(data-type);
   position: absolute;
@@ -185,51 +272,44 @@ body {
 
 /* Cores por tipo */
 .type.Grama {
-  color: #4caf50;
+  background-color: #4caf50;
 }
 
-/* verde */
 .type.Agua {
-  color: #2196f3;
+  background-color: #2196f3;
 }
 
-/* azul */
 .type.Fogo {
-  color: #ff5722;
+  background-color: #ff5722;
 }
 
-/* laranja */
 .type.Normal {
-  color: #9e9e9e;
+  background-color: #9e9e9e;
 }
 
-/* cinza */
 .type.Inseto {
-  color: #8bc34a;
+  background-color: #8bc34a;
 }
 
-/* verde claro */
 .type.Dragão {
-  color: #ff9800;
+  background-color: blue;
 }
 
-/* laranja forte */
 .type.Voador {
-  color: #90a4ae;
+  background-color: #90a4ae;
 }
 
-/* cinza azulado */
 .type.Electrico {
-  color: #ffeb3b;
+  background-color: #ffeb3b;
 }
 
-/* amarelo */
 .type.Fada {
-  color: #e91e63;
+  background-color: #e91e63;
 }
 
-/* rosa */
-
+/* =================================================================
+   MEDIA QUERIES (Mantidos)
+   ================================================================= */
 @media (max-width: 1024px) {
   .pokemon-card {
     width: 220px;
@@ -252,31 +332,19 @@ body {
   .pokemon-card img {
     max-width: 130px;
   }
-}
 
-.buttonLogin {
-  position: absolute;
-  position: absolute;
-  top: 14vh;
-  left: 90%;
-  justify-content: space-between;
-  display: flex;
-  align-items: center;
-  text-shadow: 0 2px 6px rgb(0, 0, 0, 0.8);
-  background: #fff;
-  border: none;
-  border-radius: 25px;
-  padding: 0.8rem 1.5rem;
-  font-size: 1rem;
-  font-weight: 500;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  /* sombra mais forte */
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  transition: all 0.2s ease;
-  /*text*/
+  .search-bar {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 
+  .search-box {
+    flex: 1 1 100%;
+  }
 
+  .filter-btn,
+  #show-all-btn,
+  #show-favorites-btn {
+    flex: 1;
+  }
 }
